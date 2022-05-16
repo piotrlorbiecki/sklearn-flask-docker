@@ -11,7 +11,7 @@ WORKDIR /app/
 
 # Copy requirements.txt outside the container
 # to /app/ inside the container
-COPY requirements.txt /app/
+COPY requirements.txt train.py/app/
 
 # Install required packages
 RUN pip install -r ./requirements.txt
@@ -20,9 +20,9 @@ RUN pip install -r ./requirements.txt
 # to /app/ inside the container
 COPY app.py __init__.py /app/
 
-# Copy model.pkl outside the container
+# Train the  model.pkl inside the container
 # to /app/ inside the container
-COPY model.pkl /app/
+RUN python train.py
 
 # Expose the container's port 3333
 EXPOSE 3333
